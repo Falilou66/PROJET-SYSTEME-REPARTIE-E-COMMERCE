@@ -19,7 +19,7 @@ pipeline {
         stage('🏗️ Build Docker') {
             steps {
                 echo 'Construction de l\'image Docker...'
-                sh "docker build -t ${DOCKER_USER}/${IMAGE_NAME}:${TAG} ./my-ecom-app"
+                sh "docker build -t ${DOCKER_USER}/${IMAGE_NAME}:${TAG} ."
                 sh "docker tag ${DOCKER_USER}/${IMAGE_NAME}:${TAG} ${DOCKER_USER}/${IMAGE_NAME}:latest"
             }
         }
