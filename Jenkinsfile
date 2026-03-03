@@ -7,11 +7,6 @@ pipeline {
         IMAGE_NAME  = "hackire-frontend"
         TAG         = "${env.BUILD_NUMBER}" 
     }
-    stage('Lint & Test') {
-        steps {
-            sh 'npm run lint || true'  // Le "|| true" force Jenkins à passer à la suite
-        }
-    }
     stages {
         stage('🚚 Clonage Git') {
             steps {
@@ -19,7 +14,11 @@ pipeline {
                 echo 'Code récupéré avec succès.'
             }
         }
-
+        stage('Lint & Test') {
+    steps {
+        sh 'npm run lint || true'  // Le "|| true" force Jenkins à passer à la suite
+    }
+}
         stage('🏗️ Build Docker') {
             steps {
                 echo 'Construction de l\'image Docker...'
